@@ -1,0 +1,126 @@
+.contain_list {
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+  .btn {
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+        touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: purple;
+    border-color: #4B0082;
+  }
+  .btn-primary:focus,
+  .btn-primary.focus {
+    color: #fff;
+    background-color: #9400D3;
+    border-color: #4B0082;
+  }
+  .btn-primary:hover {
+    color: #fff;
+    background-color: #9400D3;
+    border-color: #4B0082;
+  }
+  .btn-primary:active,
+  .btn-primary.active,
+  .open > .dropdown-toggle.btn-primary {
+    color: #fff;
+    background-color: #9400D3;
+    border-color: #4B0082;
+  }
+  .btn-primary:active:hover,
+  .btn-primary.active:hover,
+  .open > .dropdown-toggle.btn-primary:hover,
+  .btn-primary:active:focus,
+  .btn-primary.active:focus,
+  .open > .dropdown-toggle.btn-primary:focus,
+  .btn-primary:active.focus,
+  .btn-primary.active.focus,
+  .open > .dropdown-toggle.btn-primary.focus {
+    color: #fff;
+    background-color: #9400D3;
+    border-color: #4B0082;
+  }
+  .btn-primary:active,
+  .btn-primary.active,
+  .open > .dropdown-toggle.btn-primary {
+    background-image: none;
+  }
+  .btn-primary.disabled:hover,
+  .btn-primary[disabled]:hover,
+  fieldset[disabled] .btn-primary:hover,
+  .btn-primary.disabled:focus,
+  .btn-primary[disabled]:focus,
+  fieldset[disabled] .btn-primary:focus,
+  .btn-primary.disabled.focus,
+  .btn-primary[disabled].focus,
+  fieldset[disabled] .btn-primary.focus {
+    background-color: #9370DB;
+    border-color: #9932CC;
+  }
+  .btn-primary .badge {
+    color: #9370DB;
+    background-color: #fff;
+  }
+  
+  
+  
+  @media (min-width: 992px) {
+  .contain_list {
+        float: left;
+      width: 50%;
+    }}
+  @media (min-width: 768px){
+  .form-inline{
+      display: inline-block;
+      margin-bottom: 0;
+      vertical-align: middle;
+    
+      display: inline-block;
+      width: auto;
+      vertical-align: middle;
+    
+      display: inline-block;
+  
+      display: inline-table;
+      vertical-align: middle;
+  
+      width: auto;
+    
+      width: 100%;
+  
+      margin-bottom: 0;
+      vertical-align: middle;
+      display: inline-block;
+      margin-top: 0;
+      margin-bottom: 0;
+      vertical-align: middle;
+      padding-left: 0;
+      position: relative;
+      margin-left: 0;
+    
+      top: 0;
+    
+  }
+  
+  

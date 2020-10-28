@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.mappers.AnswerMapper">    
+	
+	<select id="readAnswer" parameterType="int" resultType="com.example.demo.domain.AnswerVO">
+        SELECT
+          *
+        FROM UserSurvey
+        WHERE srv_id = #{srv_id}
+    </select>
+    
+	<select id="readCount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM UserSurvey
+		WHERE srv_id = #{srv_id}
+	</select>
+</mapper>

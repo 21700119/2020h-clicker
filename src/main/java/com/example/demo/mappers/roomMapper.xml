@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="com.example.demo.mappers.roomMapper">   
+    <select id="list" parameterType="String" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE md_user=#{id}
+    </select>
+    <select id="plist" parameterType="String" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE
+        pt_user = #{id}
+    </select>
+    <select id="roomDetail" parameterType="int" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE
+            room_id = #{room_id}
+    </select>
+    <insert id="roomInsert" parameterType="com.example.demo.domain.RoomVO">
+        INSERT INTO
+        Room (room_id,room_name,code,md_user,pt_user,reg_date)
+        VALUES(#{room_id},#{room_name},#{code},#{md_user},#{pt_user},now()) 
+    </insert>
+    <delete id="roomDelete" parameterType="int">
+        DELETE FROM Room WHERE room_id = #{room_id}
+    </delete>
+    <update id="update" parameterType="com.example.demo.domain.RoomVO">
+        UPDATE Room
+		SET pt_user = #{pt_user}
+		WHERE code = #{code}
+    </update>
+    <select id="find" parameterType="String" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE
+            code = #{code}
+    </select>
+    <insert id="enter" parameterType="com.example.demo.domain.RoomVO">
+        INSERT INTO
+        Room (room_id,room_name,code,md_user,pt_user,reg_date)
+        VALUES(#{room_id},#{room_name},#{code},#{md_user},#{pt_user},now()) 
+    </insert>
+</mapper>

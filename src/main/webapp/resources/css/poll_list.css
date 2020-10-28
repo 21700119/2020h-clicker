@@ -1,0 +1,32 @@
+.table {
+	border-radius: 12px;
+}
+
+.table {
+	padding: 10px;
+	font-size: 14px;
+	margin: 4px 2px;
+	cursor: pointer;
+}
+
+.title {
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 10px;
+	float: left;
+}
+.make:hover {
+	background: lavender;
+}
+#modal_btn:hover {
+	background: lavender;
+}
+.main:hover {
+	text-decoration: underline;
+}
+.status{
+background-color:lightblue; font-weight:bold; border-radius:10px; width: 30%; 
+}
+.status_f{
+background-color:lightgrey; font-weight:bold; border-radius:10px; width: 30%; 
+}

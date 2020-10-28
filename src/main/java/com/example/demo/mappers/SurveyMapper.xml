@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+ 
+<mapper namespace="com.example.demo.mappers.SurveyMapper">    
+    <!-- Table Join????? -->
+    <!-- <resultMap id="Map" type="com.example.demo.domain.SurveyVO">
+    	<id column="room_id" property="room_id"/>	
+		<result column="survey_name" property="survey_name"/>
+		<result column="type" property="type"/>
+   		<result column="status" property="status"/>	
+		<association property="RoomVO" resultMap="Map1" autoMapping="true"/>
+	</resultMap>
+	
+	<resultMap id="Map1" type="com.example.demo.domain.RoomVO">
+		<id column="room_id" property="room_id"/>
+		<result column="room_name" property="room_name"/>
+    	<result column="md_user" property="md_user"/>
+   	 	<result column="code" property="code"/>
+	</resultMap>
+	
+	<select id="readSurvey" parameterType="int" resultMap="Map">
+        SELECT a.room_name, a.md_user, a.code, b.survey_name, b.type, b.status 
+        FROM Room a JOIN Survey b 
+        ON a.room_id = b.room_id 
+        WHERE b.room_id=#{room_id}
+    </select> -->
+    
+	<select id="readSurvey" parameterType="int" resultType="com.example.demo.domain.SurveyVO">
+        SELECT
+          *
+        FROM Survey
+        WHERE room_id = #{room_id}
+    </select>
+    
+    <select id="read" parameterType="int" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE
+            room_id = #{room_id}
+    </select>
+    <insert id="answerInsert">
+	   INSERT INTO 
+	   UserSurvey(user_id, srv_id, answer, reg_date)
+	   VALUES(#{user_id},#{srv_id},#{answer},now())
+   	</insert>
+   
+   	<insert id="surveyInsert">
+        INSERT INTO
+        Survey (srv_id, room_id, survey_name, type, content, end_time, status, reg_date)
+        VALUES(#{srv_id},#{room_id},#{survey_name},#{type},#{content},#{end_time},#{status},now()) 
+   	</insert>
+   	<select id="roomusercount" parameterType="int" resultType="int">
+		SELECT COUNT(*) FROM Survey
+		WHERE room_id = #{room_id}
+	</select>
+	<update id="changeStatus" parameterType="com.example.demo.domain.SurveyVO">
+		UPDATE Survey
+		   SET status = #{status}
+		 WHERE srv_id = #{srv_id}
+	</update>
+</mapper>
