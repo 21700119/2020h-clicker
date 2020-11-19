@@ -22,6 +22,11 @@ public class MemberServiceImpl implements MemberService {
 		return result;
 	}
 	@Override
+	public int confirm(MemberVO vo) throws Exception{
+		int result = dao.confirm(vo);
+		return result;
+	}
+	@Override
 	public MemberVO login(MemberVO vo) throws Exception {
 		return dao.login(vo);
 	}
