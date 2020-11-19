@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class AnswerVO {
 	private int srv_id;
-	private int user_id;
+	private String user_id;
 	private String answer;
 	private Timestamp reg_date;
 	
@@ -14,10 +14,10 @@ public class AnswerVO {
 	public void setSrv_id(int srv_id) {
 		this.srv_id = srv_id;
 	}
-	public int getUser_id() {
+	public String getUser_id() {
 		return user_id;
 	}
-	public void setUser_id(int user_id) {
+	public void setUser_id(String user_id) {
 		this.user_id = user_id;
 	}
 	public String getAnswer() {

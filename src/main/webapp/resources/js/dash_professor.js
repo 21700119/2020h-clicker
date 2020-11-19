@@ -40,27 +40,19 @@ Chart.defaults.global = {
   multiTooltipTemplate: "<%= value %>",
   onAnimationProgress: function() {},
   onAnimationComplete: function() {}
-  
-  <script language=JavaScript>
-    var data_name= [];
-    var data_time=[]; 
-     for(var i= 0 ; i < arr.length; i ++){    
-            data_name[i] = arr[i].survey_name;
-            data_time[i] =arr[i].reg_date
-        }
-  </script>
 };
+
 // BEGIN BAR CHART ============================================
 
 var barData = {
-  labels: [data_time],
+  labels: ["2020-10-17 17:42", "스터디모임시간", "ch4 이해?"],
   datasets: [{
     label: "My dataset",
     fillColor: "rgba(159, 131, 201,0.5)",
     strokeColor: "rgba(159, 131, 201,0.8)",
     highlightFill: "rgba(159, 131, 201,0.75)",
     highlightStroke: "rgba(159, 131, 201,1)",
-    data: [average_time]
+    data: [2, 2, 0]
   }]
 };
 var barOptions = {
@@ -84,7 +76,7 @@ var myBarChart = new Chart(barCtx).Bar(barData, barOptions);
 // BEGIN LINE CHART ============================================
 
 var lineGraphData = {
-  labels: [data_name],
+  labels: ["2020-10-17 17:42", "스터디모임시간", "ch4 이해?"],
   datasets: [{
     label: "My First dataset",
     fillColor: "rgba(159, 131, 201,0.2)",
@@ -93,7 +85,7 @@ var lineGraphData = {
     pointStrokeColor: "#fff",
     pointHighlightFill: "#fff",
     pointHighlightStroke: "rgba(159, 131, 201,1)",
-    data: [average_time0]
+    data: [30, 90, 0]
   }, {
     label: "My Second dataset",
     fillColor: "rgba(138, 138, 138,0.2)",
@@ -102,7 +94,7 @@ var lineGraphData = {
     pointStrokeColor: "#fff",
     pointHighlightFill: "#fff",
     pointHighlightStroke: "rgba(138, 138, 138,1)",
-    data: [30, 50, 60, 50, 10, 80, 60]
+    data: [30, 45, 0]
   }]
 };
 var lineGraphOptions = {

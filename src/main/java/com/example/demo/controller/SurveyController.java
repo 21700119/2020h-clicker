@@ -29,15 +29,18 @@ public class SurveyController {
 	MemberService memberervice;
 	
 	@Resource(name="com.example.demo.mappers.SurveyMapper")
-	SurveyMapper mapper;
+	SurveyMapper mSurveyMapper;
 	
 	@RequestMapping(value="/mroom/{room_id}", method = RequestMethod.GET) //mroom 디테일페이지 이동
-	private String roomDetail(@PathVariable int room_id, RoomVO RoomVO, Model model, SurveyVO surveyVO) throws Exception{
+	private String roomDetail(@PathVariable int room_id, RoomVO RoomVO, Model model, SurveyVO surveyVO, HttpServletRequest request) throws Exception{
 		Logger.info("read");
-		model.addAttribute("read", surveyService.read(room_id));
-	    
-	    Logger.info("readSurvey");	
-	    model.addAttribute("readSurvey", surveyService.readSurvey(room_id));	
+		model.addAttribute("read", surveyService.read(room_id));	
+		
+		Logger.info("readSurvey");
+		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
+
+		Logger.info("answerCount");
+		model.addAttribute("answerCount", mSurveyMapper.answerCount(0));
 	        
 	    return "/mroom";
 	}
@@ -45,10 +48,13 @@ public class SurveyController {
 	@RequestMapping(value="/proom/{room_id}", method = RequestMethod.GET) //mroom 디테일페이지 이동
 	private String read(@PathVariable int room_id, RoomVO RoomVO, Model model, SurveyVO surveyVO, HttpServletRequest request) throws Exception{
 		Logger.info("read");
-		model.addAttribute("read", surveyService.read(room_id));	
-		
+		model.addAttribute("read", surveyService.read(room_id));
+
 		Logger.info("readSurvey");
 		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
+		
+		Logger.info("bttnCount");
+		model.addAttribute("bttnCount", mSurveyMapper.bttn());
 	        
 	    return "/proom";
 	}
@@ -67,14 +73,17 @@ public class SurveyController {
 	    model.addAttribute("read", surveyService.read(RoomVO.getRoom_id()));
 	    
 	    Logger.info("roomusercount");
-		model.addAttribute("roomusercount", mapper.roomusercount(RoomVO.getRoom_id()));
+		model.addAttribute("roomusercount", mSurveyMapper.roomusercount(RoomVO.getRoom_id()));
 	    
         return "/dash_professor"; 
 	}
 	
-	@RequestMapping(value = "/proomAnswer/{room_id}", method = RequestMethod.POST)
-	public String write(@PathVariable int room_id, AnswerVO answerVO) throws Exception{
+	@RequestMapping(value = "/proomAnswer/{room_id}/{srv_id}", method = RequestMethod.POST)
+	public String write(@PathVariable int room_id, @PathVariable int srv_id, AnswerVO answerVO) throws Exception{
 		Logger.info("write");
+		
+		answerVO.setUser_id(mSurveyMapper.proomAnswerUserId(room_id));
+		answerVO.setSrv_id(mSurveyMapper.proomAnswerSrvId(srv_id));
 		
 		surveyService.write(answerVO);
 		
@@ -129,19 +138,21 @@ public class SurveyController {
         }
         
         survey.setStatus(true);
-        
+        		
         surveyService.surveyInsertService(survey);
         
         return "redirect:/mroom/{room_id}";
     }
 	
-	@RequestMapping(value = "/changeStatus/{room_id}", method = RequestMethod.POST)
-	public String changeStatus(@PathVariable int room_id, SurveyVO surveyVO) throws Exception{
+	@RequestMapping(value = "/changeStatus/{room_id}/{srv_id}", method = RequestMethod.POST)
+	public String changeStatus(@PathVariable int room_id, @PathVariable int srv_id, SurveyVO surveyVO) throws Exception{
 		Logger.info("changeStatus");
 		
+		surveyVO.setRoom_id(room_id);
+		surveyVO.setSrv_id(srv_id);
 		surveyVO.setStatus(false);
-		//Logger.info(String.valueOf(surveyVO.isStatus()));
-		surveyService.changeStatus(surveyVO);
+		
+		mSurveyMapper.changeStatus(surveyVO);
 		
 		return "redirect:/mroom/{room_id}";
 	}

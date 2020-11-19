@@ -18,11 +18,14 @@
   <title>자료실</title>
 
   <link rel= "stylesheet" type="text/css" href="/resources/css/dash_student.css">
+  <style>
+  @media screen and (max-width: 600px) {
+	.title {font-size:15px;}
+	.ex {font-size:10px;}
+  }
+  </style>
 </head>
-<body>
-<script type="text/javascript">
-${answerCount}
-</script>
+<body>>
   <!-- Top App Bar -->
   <header class="mdc-top-app-bar" style="background:#6c64a3;">
     <div class="mdc-top-app-bar__row">
@@ -37,7 +40,7 @@ ${answerCount}
 
   <section class="marg">
   	<h2 class="title is-3">Today 요약</h2>
-    <p class="ex">오늘 ${readAnswer.user_id}님의 투표완료갯수는 전보다 10%증가하였습니다.</p><hr>
+    <p class="ex">오늘 hgu21700099 님의 투표완료갯수는 0%입니다.</p><hr>
     <div class="complete">
       <div id="chart" class="left"></div>
       <div id="chart2" class="right"></div>
@@ -46,20 +49,20 @@ ${answerCount}
     <section class="section">
       <div class="columns">
         <div class="column is-6">
-          <h2 class="title is-3">나의 완료 시간과 평균 완료 시간 (분)</h2>
-          <p class="ex"> 해당날일에 생성한 모든 투표에 대해, 나의 총 완료 시간과 학생들의 총 평균 완료 시간을 비교한 것입니다.</p><hr>
+          <h2 class="title is-3">나의 완료시간과 평균 완료시간 비교 (초)</h2>
+          <p class="ex"> 생성된 투표에 대해, 나의 완료시간과 학생들의 평균 완료시간을 비교한 것입니다.</p><hr>
           <div class="myTime" style="float: left;"></div>
-          <p style="float: left; margin-left: 10px;">나의 완료 시간</p>
+          <p style="float: left; margin-left: 10px;">나의 완료시간</p>
           <div class="averageTime" style="float: left; margin-left: 30px;"></div>
-          <p style="float: left; margin-left: 10px;">평균 완료 시간</p>
+          <p style="float: left; margin-left: 10px;">평균 완료시간</p>
           <canvas id="myGraph"></canvas>
         </div>
       </div>
     </section>
 
     <div class="section">
-      <h2>미완료 List</h2>
-      <p class="ex"> 오늘 생성한 모든 투표에 대해, 내가 완료하지 못한 투표 List입니다.</p><hr>
+      <h2 class="title is-3">미완료 List</h2>
+      <p class="ex"> 완료하지 못한 투표 List입니다.</p><hr>
       <div id="list">
        <table>
          <tr v-for="prob in problem2">

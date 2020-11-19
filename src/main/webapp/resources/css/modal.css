@@ -23,8 +23,8 @@
 	width: 300px;
 	height: 300px;
 	position: fixed;
-	top: 100px;
-	left: 500px;
+	top: 50%;
+	left: 70%;
 	margin: -250px 0 0 -250px;
 	z-index: 2;
 }

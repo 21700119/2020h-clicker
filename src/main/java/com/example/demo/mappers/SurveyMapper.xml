@@ -60,4 +60,36 @@
 		   SET status = #{status}
 		 WHERE srv_id = #{srv_id}
 	</update>
+	<select id="proomAnswerUserId" parameterType="int" resultType="String">
+        SELECT
+            pt_user
+        FROM Room
+        WHERE
+            room_id = #{room_id}
+    </select>
+    
+    <select id="proomAnswerSrvId" parameterType="int" resultType="int">
+        SELECT
+            srv_id
+        FROM Survey
+        WHERE
+            srv_id = #{srv_id}
+    </select>
+    
+    <select id="answerCount" parameterType="int" resultType="int">
+    	SELECT
+    		COUNT(*)
+    	FROM UserSurvey
+    	WHERE
+    		srv_id = #{srv_id}
+    </select>
+    
+    <select id="bttn" resultType="int">
+    	SELECT
+    		COUNT(*)
+    	FROM UserSurvey
+    	WHERE
+    		srv_id = 4
+    </select>
+    
 </mapper>

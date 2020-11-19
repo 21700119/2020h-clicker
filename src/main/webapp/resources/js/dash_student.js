@@ -4,12 +4,12 @@ var chartSelector2 = '#chart2';
 var labelSelector = '> g:eq(1) g text';
 
 var data = [
-  [ '완료', 80],
-  [ '미완료', 20 ]
+  [ '완료', 0],
+  [ '미완료', 100 ]
 ];
 var data2 = [
-  [ '완료', 32],
-  [ '미완료', 68 ]
+  [ '완료', 60],
+  [ '미완료', 40 ]
 ];
 
 google.load('visualization', '1.1', { packages: ['corechart', 'line'] });
@@ -107,7 +107,7 @@ Chart.defaults.global = {
 // BEGIN LINE CHART ============================================
 
 var lineGraphData = {
-  labels: ["9/21", "9/24", "9/28", "10/5", "10/8", "10/12", "10/15"],
+  labels: ["2020-10-18 19:55", "시험 난이도", "2020-10-23 11:39", "2020-10-27 11:33", "2020-10-27 12:02"],
   datasets: [{
     label: "My First dataset",
     fillColor: "rgba(159, 131, 201,0.2)",
@@ -116,7 +116,7 @@ var lineGraphData = {
     pointStrokeColor: "#fff",
     pointHighlightFill: "#fff",
     pointHighlightStroke: "rgba(159, 131, 201,1)",
-    data: [00, 60, 30, 120, 30, 120, 40]
+    data: [20, 60, 0, 0, 30]
   }, {
     label: "My Second dataset",
     fillColor: "rgba(180, 180, 180,0.2)",
@@ -125,7 +125,7 @@ var lineGraphData = {
     pointStrokeColor: "#fff",
     pointHighlightFill: "#fff",
     pointHighlightStroke: "rgba(180, 180, 180,1)",
-    data: [30, 50, 60, 50, 10, 80, 60]
+    data: [30, 50, 60, 50, 10]
   }]
 };
 var lineGraphOptions = {
@@ -153,18 +153,8 @@ var officeVM = new Vue({
   el: '#list',
   data: {
     problem: [
-      {
-        number: '1번',
-        go: false
-      },
-      {
-        number: '8번',
-        go: false
-      },
-      {
-        number: '9번',
-        go: false
-      }
+      { number: '2020-10-23 11:39', go: false },
+      { number: '2020-10-27 11:33', go: false },
     ]
   },
   computed:{

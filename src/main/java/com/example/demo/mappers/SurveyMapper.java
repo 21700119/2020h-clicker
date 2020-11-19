@@ -21,4 +21,12 @@ public interface SurveyMapper {
 	public int roomusercount(int room_id) throws Exception;
 
 	public void changeStatus(SurveyVO survey) throws Exception;
+	
+	public String proomAnswerUserId(int room_id) throws Exception;
+	
+	public int proomAnswerSrvId(int srv_id) throws Exception;
+	
+	public int answerCount(int srv_id) throws Exception;
+	
+	public int bttn() throws Exception;
 }

@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.domain.MemberVO;
 import com.example.demo.domain.RoomVO;
+import com.example.demo.service.MemberService;
 import com.example.demo.service.RoomService;
 
 @Controller
@@ -27,6 +29,8 @@ public class RoomController {
 	
 	@Inject
 	RoomService roomservice;
+	
+	MemberService service;
 
 	@RequestMapping(value="/main", method = RequestMethod.GET)
     public String list1( Model model, @RequestParam(value="id",required=false)String id) throws Exception{
@@ -75,10 +79,9 @@ public class RoomController {
 	    return "redirect:/main";
 	}
 	
-	@RequestMapping(value="/delete/{room_id}", method = RequestMethod.GET) //mroom 삭제
-    private String roomDelete(@PathVariable int room_id,@RequestParam(value="id",required=false)String id,RedirectAttributes rttr) throws Exception{
+	@RequestMapping(value="/delete/{room_id}", method = RequestMethod.POST) //mroom 삭제
+    private String roomDelete(@PathVariable int room_id,RedirectAttributes rttr) throws Exception{
         roomservice.roomDelete(room_id);
-        rttr.addAttribute("id", id);
         
         return "redirect:/main"; //main?id=111이런식으로 가야됌
     }

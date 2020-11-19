@@ -10,11 +10,14 @@
 <title>참여 방</title>
 
 <!-- app bar -->
-<link rel='stylesheet' href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
-<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet'
+	href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
+<link rel='stylesheet'
+	href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 <link rel="stylesheet" href="/resources/appbar.css">
 <!-- poll -->
-<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet'
+	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="/resources/poll.css">
 <!-- custom -->
 <link rel="stylesheet" href="/resources/css/timer.css">
@@ -22,7 +25,8 @@
 <link rel="stylesheet" href="/resources/css/clicker.css">
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <style>
 * {
@@ -60,10 +64,32 @@
 }
 
 @media screen and (max-width: 600px) {
-	.code {font-size: 12px;}
-	.room_title {font-size: 15px;}
-	.make { width:100%;}
+	.code {
+		font-size: 12px;
+	}
+	.room_title {
+		font-size: 15px;
+	}
 }
+
+.surveyCount {
+	float: right;
+	font-size: 16px;
+	height: 30px;
+	width: 65px;
+	border: 2px solid #6c64a3;
+	border-radius: 10px;
+	background: #6c64a3;
+	color: white;
+	text-align: center;
+	margin: 10px 10px 0 0;
+	padding-top: 3px;
+}
+
+.surveyCount_b {
+	background: lavender;
+}
+
 </style>
 </head>
 
@@ -119,11 +145,11 @@
 					style="background: lavender;">모든 투표</button>
 			</div>
 			<div class="row">
-
 				<c:forEach items="${readSurvey}" var="readSurvey" varStatus="status">
 					<div class="column">
 						<div class="poll-card">
 							<div class="parent">
+								<input type="hidden" name="srv_id" value="${readSurvey.srv_id}">
 								<p class="question" style="display: inline-block">
 									${readSurvey.survey_name}</p>
 								<c:choose>
@@ -136,75 +162,166 @@
 								</c:choose>
 							</div>
 
-							<form role="form" method="post" action="/proomAnswer">
+							<form role="form" method="post" action="/proomAnswer/${read.room_id}/${readSurvey.srv_id}">
 								<div class="options" id="survey_${status.index}">
 									<c:choose>
 										<c:when test="${readSurvey.type == 1}">
-											<div class="option">
-												<div class="analytic">
-													<div class="bar"></div>
-													<div class="percent">50%</div>
-												</div>
-												<div class="input">
-													<label for="optiony"> <input type="radio"
-														id="optiony" name="answer" value="yes"> Yes&nbsp;<i
-														class="fa fa-check tick" aria-hidden="true"></i></label>
-												</div>
-											</div>
-											<div class="option">
-												<div class="analytic">
-													<div class="bar"></div>
-													<div class="percent">50%</div>
-												</div>
-												<div class="input">
-													<label for="optionn"> <input type="radio"
-														id="optionn" name="answer" value="no"> No&nbsp;<i
-														class="fa fa-check tick" aria-hidden="true"></i></label>
-												</div>
-											</div>
+											<c:choose>
+												<c:when test="${readSurvey.status == true}">
+													<div class="option">
+														<div class="analytic">
+															<div class="bar"></div>
+															<div class="percent">50%</div>
+														</div>
+														<div class="input">
+															<label for="optiony" style="float:left;"> Yes&nbsp;<i class="fa fa-check tick" aria-hidden="true" style="display: block; float: left;"></i></label>
+															<p class="surveyCount">32 명</p>
+														</div>
+													</div>
+													<div class="option">
+														<div class="analytic">
+															<div class="bar"></div>
+															<div class="percent">50%</div>
+														</div>
+														<div class="input">
+															<label for="optionn" style="float:left;"> No&nbsp;<i
+																class="fa fa-check tick" aria-hidden="true"></i></label>
+															<p class="surveyCount">2 명</p>
+														</div>
+													</div>
+												</c:when>
+												<c:otherwise>
+													<div class="option">
+														<div class="analytic">
+															<div class="bar"></div>
+															<div class="percent">50%</div>
+														</div>
+														<div class="input surveyCount_b">
+															<label for="optiony" style="float: left;"> Yes&nbsp;<i
+																class="fa fa-check tick" aria-hidden="true"></i></label>
+															<p class="surveyCount">27 명</p>
+														</div>
+													</div>
+													<div class="option">
+														<div class="analytic">
+															<div class="bar"></div>
+															<div class="percent">50%</div>
+														</div>
+														<div class="input">
+															<label for="optionn" style="float: left;"> No&nbsp;<i
+																class="fa fa-check tick" aria-hidden="true"></i></label>
+															<p class="surveyCount">7 명</p>
+														</div>
+													</div>
+												</c:otherwise>
+											</c:choose>
+
 
 										</c:when>
 										<c:when test="${readSurvey.type == 2}">
-											<script>
-												//$(document).ready(function() {
-													var repeat_num = '<c:out value="${readSurvey.content}" />';
-													repeat_num *= 1;
-	
-													for (var i = 0; i < repeat_num; i++) {
-														$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'"><input type="radio" id="option'+String.fromCharCode(97+i)+'" name="answer" value="'+String.fromCharCode(97+i)+'">   '+String.fromCharCode(97+i)+'</label></div></div>');
-													}
-												//}
-											</script>
+											<c:choose>
+												<c:when test="${bttnCount == 1}">
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															repeat_num *= 1;
+			
+															for (var i = 0; i < repeat_num; i++) {
+																if(i==0) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;">   '+String.fromCharCode(97+i)+'</label><p class="surveyCount">10 명</p></div></div>');
+																else if(i==1) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;">   '+String.fromCharCode(97+i)+'<i class="fa fa-check tick" style="display: block; float: left;"></i></label><p class="surveyCount">12 명</p></div></div>');
+																else $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;">   '+String.fromCharCode(97+i)+'</label><p class="surveyCount">15 명</p></div></div>');
+															}
+														//}
+													</script>
+												</c:when>
+												<c:otherwise>
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															repeat_num *= 1;
+			
+															for (var i = 0; i < repeat_num; i++) {
+																if(i==0) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;"><input type="radio" id="option'+String.fromCharCode(97+i)+'" name="answer" value="'+String.fromCharCode(97+i)+'">   '+String.fromCharCode(97+i)+'</label><p class="surveyCount">10 명</p></div></div>');
+																else if(i==1) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;"><input type="radio" id="option'+String.fromCharCode(97+i)+'" name="answer" value="'+String.fromCharCode(97+i)+'">   '+String.fromCharCode(97+i)+'</label><p class="surveyCount">11 명</p></div></div>');
+																else $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+String.fromCharCode(97+i)+'" style="float: left;"><input type="radio" id="option'+String.fromCharCode(97+i)+'" name="answer" value="'+String.fromCharCode(97+i)+'">   '+String.fromCharCode(97+i)+'</label><p class="surveyCount">15 명</p></div></div>');
+																
+															}
+														//}
+													</script>
+												</c:otherwise>
+											</c:choose>											
 										</c:when>
 										<c:when test="${readSurvey.type == 3}">
-											<script>
-												//$(document).ready(function() {
-													var repeat_num = '<c:out value="${readSurvey.content}" />';
-													repeat_num *= 1;
-	
-													for (var i = 1; i <= repeat_num; i++) {
-														$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'"><input type="radio" id="option'+i+'" name="answer" value="'+i+'">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
-													}
-												//}
-											</script>
+											<c:choose>
+												<c:when test="${readSurvey.status == true}">
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															repeat_num *= 1;
+			
+															for (var i = 1; i <= repeat_num; i++) {
+																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'"><input type="radio" id="option'+i+'" name="answer" value="'+i+'">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
+															}
+														//}
+													</script>
+												</c:when>
+												<c:otherwise>
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															repeat_num *= 1;
+			
+															for (var i = 1; i <= repeat_num; i++) {
+																if(i==3) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'" style="float: left;">   '+i+'&nbsp;<i class="fa fa-check tick" style="display: block; float: left;"></i></label><p class="surveyCount">17 명</p></div></div>');
+																else if(i==4) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input surveyCount_b"><label for="option'+i+'" style="float: left;">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label><p class="surveyCount">20 명</p></div></div>'); 
+																else if(i==5) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'" style="float: left;">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label><p class="surveyCount">3 명</p></div></div>'); 
+																else $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'" style="float: left;">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label><p class="surveyCount">0 명</p></div></div>');
+															}
+														//}
+													</script>
+												</c:otherwise>
+											</c:choose>
+											
 										</c:when>
 										<c:when test="${readSurvey.type == 4}">
-											<script>
-												//$(document).ready(function() {
-													var repeat_num = '<c:out value="${readSurvey.content}" />';
-													var text = repeat_num.split(",");
-	
-													for (var i = 0; i < text.length; i++) {
-														$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="optiont'+i+'"><input type="radio" id="optiont'+i+'" name="answer" value="'+text[i]+'">   '+text[i]+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
-													}
-												//}
-											</script>
+											<c:choose>
+												<c:when test="${readSurvey.status == true}">
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															var text = repeat_num.split(",");
+			
+															for (var i = 0; i < text.length; i++) {
+																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="optiont'+i+'"><input type="radio" id="optiont'+i+'" name="answer" value="'+text[i]+'">   '+text[i]+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
+															}
+														//}
+													</script>
+												</c:when>
+												<c:otherwise>
+													<script>
+														//$(document).ready(function() {
+															var repeat_num = '<c:out value="${readSurvey.content}" />';
+															var text = repeat_num.split(",");
+			
+															for (var i = 0; i < text.length; i++) {
+																if(i==0) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="optiont'+i+'" style="float: left;">   '+text[i]+'&nbsp;<i class="fa fa-check tick" style="display: block; float: left;"></i></label><p class="surveyCount">10 명</p></div></div>');
+																else $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input surveyCount_b"><label for="optiont'+i+'" style="float: left;">   '+text[i]+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label><p class="surveyCount">30 명</p></div></div>');
+															}
+														//}
+													</script>
+												</c:otherwise>
+											</c:choose>
+											
 										</c:when>
 									</c:choose>
 
 
 									<c:if test="${readSurvey.status == true}">
-										<button type="submit" class="make">투표하기</button>
+										<c:if test="${readSurvey.type != 1}">
+											<c:if test="${bttnCount != 1}">
+												<button type="submit" class="make" id="clickMe" onClick="check()">투표하기</button>
+											</c:if>
+										</c:if>
 									</c:if>
 
 								</div>
@@ -215,11 +332,12 @@
 			</div>
 		</main>
 	</div>
+
+	
 	<!-- appbar -->
 	<script
 		src='https://unpkg.com/material-components-web@latest/dist/material-components-web.min.js'></script>
 	<script src="/resources/appbar.js"></script>
-
 
 </body>
 </html>
