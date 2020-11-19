@@ -11,8 +11,15 @@
 <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 <link href="/resources/assets/dist/css/bootstrap.min.css" rel="stylesheet">
 <link href="/resources/css/signin.css" rel="stylesheet">
+
+<!-- ajax -->
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-</head>
+
+<!-- Sweet Alert -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.css" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.11.0/sweetalert2.all.min.js"></script>
+
 <style>
 .bd-placeholder-img {
 	font-size: 1.125rem;
@@ -27,33 +34,42 @@
 	font-size: 3.5rem;
 }
 }
+.idChk { background-color: #4287f5; border-radius: 8px; border:none; color: white;}
 </style>
-	<script type="text/javascript">
+<script type="text/javascript">
 		$(document).ready(function(){
 			// 취소
 			$(".cencle").on("click", function(){
-				
-				location.href = "/login";
-						    
+				location.href = "/login";	    
 			})
 		
 			$("#submit").on("click", function(){
 				if($("#user_id").val()==""){
-					alert("아이디를 입력해주세요.");
+					Swal.fire({
+	                    icon: 'error',
+	                    title: "아이디를 입력해주세요.",
+	                });
 					$("#user_id").focus();
 					return false;
 				}
 				if($("#pw").val()==""){
-					alert("비밀번호를 입력해주세요.");
+					Swal.fire({
+	                    icon: 'error',
+	                    title: "비밀번호를 입력해주세요.",
+	                });
 					$("#pw").focus();
 					return false;
 				}
 				if($("#name").val()==""){
-					alert("성명을 입력해주세요.");
+					Swal.fire({
+	                    icon: 'error',
+	                    title: "이름을 입력해주세요.",
+	                });
 					$("#name").focus();
 					return false;
 				}
 			});
+			//패스워드 확인
 			$(function(){ 
 				$("#alert-success").hide(); 
 				$("#alert-danger").hide(); 
@@ -66,8 +82,30 @@
 						$("#submit").removeAttr("disabled"); }else{ $("#alert-success").hide(); $("#alert-danger").show(); $("#submit").attr("disabled", "disabled"); } } }); });
 
 		});
-		
+
+		//아이디 중복확인
+		$(document).ready(function(){
+			  $("#user_id").blur(function(){
+				  $.ajax({
+						url : "/member/idChk",
+						type : "post",
+						dataType : "json",
+						data : {"user_id" : $("#user_id").val()},
+						success : function(data){
+							if(data == 1){
+								$("#id_check").text("* 중복된 아이디입니다.");
+								$("#id_check").css("color", "red");
+							}else if(data == 0){
+								$("#idChk").attr("value", "Y");
+								$("#id_check").text("* 사용가능한 아이디입니다.");
+								$("#id_check").css("color", "red");
+							}
+						}
+					})
+			  });
+			});
 </script>
+</head>
 <body class="text-center" style="background:white">
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<form action="/member/register" method="post" class="form-signin">
@@ -77,7 +115,9 @@
 				<div class="form-group has-feedback">
 <!-- 					<label class="control-label" for="user_id">아이디</label>
  -->					<input type="text" id="user_id" class="form-control" name="user_id" placeholder="ID" required autofocus> 
-					<p>ex) hgu21700470</p>
+						<p>ex) hgu21700470</p>
+						<!-- <button class="idChk" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button> -->
+						<p class="check_font" id="id_check"></p>
 				</div>
 				<div class="form-group has-feedback">
 <!-- 					<label class="control-label" for="name">성명</label>
