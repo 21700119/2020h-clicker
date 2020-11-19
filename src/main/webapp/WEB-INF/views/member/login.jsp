@@ -43,16 +43,13 @@
 				<label for="pw" class="sr-only">Password</label> 
 				<input class="form-control" type="password" id="pw" name="pw"placeholder="Password" required>
 			</div>
+			
 			<div>
 				<button type="submit" class="btn btn-lg btn-primary btn-block">로그인</button>
 				<button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='./register'">회원가입</button>
 			</div>
 		</c:if>
 
-		<c:if test="${msg == false}">
-			System.out.println(${msg});
-			alert("로그인 실패! 아이디와 비밀번호 확인해주세요.");
-		</c:if>
 	</form>
 </body>
 </html>
