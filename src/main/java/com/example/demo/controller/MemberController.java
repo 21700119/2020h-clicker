@@ -25,15 +25,23 @@ public class MemberController {
 	
 	@Inject
 	MemberService service;
-	
 	RoomService roomservice;
 	
 	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
-		logger.info("post register");
-		
-		service.register(vo);
+		int result = service.idChk(vo);
+		try {
+			if(result == 1) {
+				return "/member/register";
+			}else if(result == 0) {
+				service.register(vo);
+			}
+			// 요기에서~ 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기 
+			// 존재하지 않는다면 -> register
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 		
 		 return "/member/login";
 	}
@@ -52,10 +60,9 @@ public class MemberController {
 		return result;
 	}
 	
+	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, RedirectAttributes rttr,MemberVO vo, Model model) throws Exception{
-		logger.info("post login");
-		
+	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO vo, Model model) throws Exception{	
 		HttpSession session = req.getSession();
 		MemberVO loginuser = service.login(vo);
 		
