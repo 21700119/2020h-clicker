@@ -43,17 +43,28 @@
 				<label for="pw" class="sr-only">Password</label> 
 				<input class="form-control" type="password" id="pw" name="pw"placeholder="Password" required>
 			</div>
+
+      <div id="googleLoginBtn" style="cursor: pointer; margin: 5%;">
+				<img id="googleLoginImg" src="../../../resources/img/google_icon.png" width="17.5%" height="7%">
+			</div>
+
 			<div>
 				<button type="submit" class="btn btn-lg btn-primary btn-block">로그인</button>
 				<button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='./register'">회원가입</button>
 			</div>
 		</c:if>
 
-		<c:if test="${msg == false}">
-			System.out.println(${msg});
-			alert("로그인 실패! 아이디와 비밀번호 확인해주세요.");
-		</c:if>
 	</form>
+	
+	
+	<script>
+		const onClickGoogleLogin = (e) => {
+	 		window.location.replace("https://accounts.google.com/o/oauth2/v2/auth?client_id=610529326658-o5mjmgvss1bss8t12gsm5faf274vmbhd.apps.googleusercontent.com&redirect_uri=http://localhost:8080/login/google/auth&response_type=code&scope=email%20profile%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fdrive.file&access_type=offline")
+	 	}
+		
+		const googleLoginBtn = document.getElementById("googleLoginBtn");
+		googleLoginBtn.addEventListener("click", onClickGoogleLogin);
+	</script>
 </body>
 </html>
 
