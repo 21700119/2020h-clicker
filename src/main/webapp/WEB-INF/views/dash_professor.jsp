@@ -26,7 +26,7 @@
   <header class="mdc-top-app-bar" style="background:#6c64a3;">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
-        <button class="mdc-top-app-bar__navigation-icon mdc-icon-button material-icons" onclick="location.href='./'">
+        <button class="mdc-top-app-bar__navigation-icon mdc-icon-button material-icons" onclick="location.href='/mroom/${read.room_id}'">
           <span class="material-icons">keyboard_backspace</span>
         </button>
         <a class="mdc-top-app-bar__title" style="color: inherit;">자료실</a>
