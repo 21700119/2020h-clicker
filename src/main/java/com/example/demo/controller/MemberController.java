@@ -1,6 +1,9 @@
 package com.example.demo.controller;
+import java.io.PrintWriter;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
@@ -25,15 +28,23 @@ public class MemberController {
 	
 	@Inject
 	MemberService service;
-	
 	RoomService roomservice;
 	
 	// 회원가입 post
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
-		logger.info("post register");
-		
-		service.register(vo);
+		int result = service.idChk(vo);
+		try {
+			if(result == 1) {
+				return "/member/register";
+			}else if(result == 0) {
+				service.register(vo);
+			}
+			// 요기에서~ 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기 
+			// 존재하지 않는다면 -> register
+		} catch (Exception e) {
+			throw new RuntimeException();
+		}
 		
 		 return "/member/login";
 	}
@@ -52,15 +63,14 @@ public class MemberController {
 		return result;
 	}
 	
+	
+	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO vo, Model model) throws Exception{
-		logger.info("post login");
-		
+
+	public String login(HttpServletRequest req, HttpServletResponse response, RedirectAttributes rttr, MemberVO vo, Model model) throws Exception{	
 		HttpSession session = req.getSession();
 		MemberVO loginuser = service.login(vo);
-		
 		logger.info("login: {}", loginuser);
-		
 		if(loginuser == null) {
 			session.setAttribute("member", null);
 			rttr.addFlashAttribute("msg", false);
@@ -71,14 +81,17 @@ public class MemberController {
 		if(loginuser != null) {
 			return "redirect:/main";
 		}else {
-			return "/member/login";
+			response.setContentType("text/html; charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            out.println("<script>alert('로그인 정보를 확인해주세요.'); </script>");
+            out.flush();
+            return "/member/login";
 		}
 	}
 
 	@RequestMapping(value = "/member/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception{
 		session.invalidate();
-		System.out.println("!!!!!!!");
 		return "/member/login";
 	}
 	

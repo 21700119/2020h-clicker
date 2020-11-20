@@ -8,6 +8,8 @@ public interface MemberDAO {
 	// 아이디 중복체크
 	public int idChk(MemberVO vo) throws Exception;
 	
+	public int confirm(MemberVO vo) throws Exception;
+	
 	public MemberVO login(MemberVO vo) throws Exception;
  
 }
