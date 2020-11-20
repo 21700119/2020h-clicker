@@ -1,24 +1,19 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
 <!DOCTYPE html>
 <html lang="en" class="mdc-typography">
 <head>
 <meta charset="UTF-8">
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <title>만든 방</title>
 
 <!-- app bar -->
-<link rel='stylesheet'
-	href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
-<link rel='stylesheet'
-	href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet' href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 <link rel="stylesheet" href="/resources/appbar.css">
 <!-- poll -->
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="/resources/poll.css">
 <!-- custom -->
 <link rel="stylesheet" href="/resources/css/timer.css">
@@ -30,15 +25,33 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <style>
-* {
-	box-sizing: border-box;
+* { box-sizing: border-box; }
+.column {
+	margin: auto;
+	float: left;
+	width: 33.3%;
+	padding: 10px;
+	height: 300px;
+	margin-top: 2%;
 }
-
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
 .top {
 	display: flex;
 	width: 97%;
 }
-
+.poll-card{
+	width: 400px;
+	height:280px;
+	border: 1px solid #555;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	padding: 1rem 1.5rem;
+	overflow: scroll;
+}
 #modal_btn, .make {
 	border: 2px solid lavender;
 	border-radius: 50px;
@@ -48,21 +61,30 @@
 	margin-left: 5px;
 	font-size: 12px';
 }
-
-.make:hover {
-	background: lavender;
-}
-
-#modal_btn:hover {
-	background: lavender;
-}
+.make:hover { background: lavender;}
+#modal_btn:hover { background: lavender;}
 .code {padding: 1px 13px 1px 13px; border:1.5px solid white; border-style: none none double none; font-size:16px;}
+.parent {display:flex;}
+.question {flex:4;}
+.status, .status_f {flex:1;  border-radius: 50px; text-align:center;}
+.status {background: lightblue; border: border: 2px solid lightblue;}
+.status_f {border: border: 2px solid lavender; background: lightgrey;}
+.modal_wrap {
+	display: none;
+	width: 300px;
+	height: 300px;
+	position: fixed;
+	top: 50%;
+	left: 53%;
+	margin: -250px 0 0 -250px;
+	z-index: 2;
+}
 @media screen and (max-width: 600px) {
 	.column {width: 100%; margin-left:0rem;}
-	.poll-card{ width: 100%;}
-	.make{width: 20%; font-size:3px;}
-	#modal_btn{width: 30%; font-size:3px;}
-	.modal_wrap{width: 80%; top: 18%; left:74%; }
+	.poll-card{ width: 100%; overflow:scroll;}
+	.make{width: 50%; font-size:3px;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.modal_wrap{width: 80%; top: 43%; left:74%; }
 	.room_title{font-size:15px;}
 	.code{font-size:12px;}
 }
