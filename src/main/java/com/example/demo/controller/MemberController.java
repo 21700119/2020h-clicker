@@ -66,6 +66,7 @@ public class MemberController {
 	
 	//로그인
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
+
 	public String login(HttpServletRequest req, HttpServletResponse response, RedirectAttributes rttr, MemberVO vo, Model model) throws Exception{	
 		HttpSession session = req.getSession();
 		MemberVO loginuser = service.login(vo);

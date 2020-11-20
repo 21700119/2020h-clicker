@@ -172,10 +172,10 @@
 									<input type="radio" id="y" name="type" value="1"> <label
 										for="y">yes/no</label>
 								</div>
-								<div class="card" id="abc">
+								<!-- <div class="card" id="abc">
 									<input type="radio" id="a" name="type" value="2"> <label
 										for="a">a,b,c,...</label>
-								</div>
+								</div> -->
 								<div class="card" id="onetwo">
 									<input type="radio" id="o" name="type" value="3"> <label
 										for="o">1,2,3,...</label>
@@ -222,8 +222,6 @@
 							</div>
 
 							<form role="form" method="post" action="/changeStatus/${read.room_id}/${readSurvey.srv_id}">
-
-								
 								<div class="options" id="survey_${status.index}">	
 									<c:choose>
 									<c:when test="${readSurvey.type == 1}">
