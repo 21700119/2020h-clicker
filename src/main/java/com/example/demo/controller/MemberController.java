@@ -53,7 +53,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(HttpServletRequest req, RedirectAttributes rttr,MemberVO vo, Model model) throws Exception{
+	public String login(HttpServletRequest req, RedirectAttributes rttr, MemberVO vo, Model model) throws Exception{
 		logger.info("post login");
 		
 		HttpSession session = req.getSession();

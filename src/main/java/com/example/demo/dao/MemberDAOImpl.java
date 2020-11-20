@@ -20,7 +20,7 @@ public class MemberDAOImpl implements MemberDAO {
 	// 아이디 중복 체크
 	@Override
 	public int idChk(MemberVO vo) throws Exception {
-		int result = sql.selectOne("memberMapper.idChk", vo);
+		int result = sql.selectOne("com.example.demo.mapper.MemberMapper.idChk", vo);
 		System.out.println(result);
 		return result;
 	}

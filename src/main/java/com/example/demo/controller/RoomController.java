@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.domain.MemberVO;
+//import com.example.demo.domain.MemberVO;
 import com.example.demo.domain.RoomVO;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.RoomService;

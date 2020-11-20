@@ -20,9 +20,11 @@
 	</select>
     
     <!-- 아이디 중복 체크 -->
-	<select id="idChk" resultType="int">
-		SELECT COUNT(*) FROM User
-		WHERE user_id = #{user_id}
-	</select>
+	<select id="idChk" parameterType="String" resultType="int">
+        SELECT
+          COUNT(*)
+        FROM User
+        WHERE user_id = #{user_id}
+    </select>
 	      
 </mapper>
