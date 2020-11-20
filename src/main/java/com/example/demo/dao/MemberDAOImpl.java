@@ -21,6 +21,8 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public int idChk(MemberVO vo) throws Exception {
 		int result = sql.selectOne("com.example.demo.mapper.MemberMapper.idChk", vo);
+
+		System.out.println(result);
 		return result;
 	}
 	@Override
