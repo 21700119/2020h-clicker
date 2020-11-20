@@ -44,16 +44,15 @@
 				<input class="form-control" type="password" id="pw" name="pw"placeholder="Password" required>
 			</div>
 
-      <div id="googleLoginBtn" style="cursor: pointer; margin: 5%;">
-				<img id="googleLoginImg" src="../../../resources/img/google_icon.png" width="17.5%" height="7%">
-			</div>
-
 			<div>
 				<button type="submit" class="btn btn-lg btn-primary btn-block">로그인</button>
 				<button type="button" class="btn btn-lg btn-primary btn-block" onclick="location.href='./register'">회원가입</button>
 			</div>
 		</c:if>
-
+			<div id="googleLoginBtn" style="cursor: pointer; margin: 5%;">
+			<img id="googleLoginImg" src="../../../resources/img/google_icon.png" width="17.5%" height="7%">
+			구글로 로그인
+			</div>
 	</form>
 	
 	
