@@ -1,43 +1,59 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en" class="mdc-typography">
 <head>
 <meta charset="UTF-8">
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <title>참여 방</title>
 
 <!-- app bar -->
-<link rel='stylesheet'
-	href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
-<link rel='stylesheet'
-	href='https://fonts.googleapis.com/icon?family=Material+Icons'>
+<link rel='stylesheet' href='https://unpkg.com/material-components-web@latest/dist/material-components-web.css'>
+<link rel='stylesheet' href='https://fonts.googleapis.com/icon?family=Material+Icons'>
 <link rel="stylesheet" href="/resources/appbar.css">
+
 <!-- poll -->
-<link rel='stylesheet'
-	href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="/resources/poll.css">
+
 <!-- custom -->
 <link rel="stylesheet" href="/resources/css/timer.css">
 <link rel="stylesheet" href="/resources/css/modal.css">
 <link rel="stylesheet" href="/resources/css/clicker.css">
-<!-- Jquery -->
+
+<!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 <style>
-* {
-	box-sizing: border-box;
-}
-
+* { box-sizing: border-box; }
 .top {
 	display: flex;
 	width: 97%;
 }
-
+.column {
+	margin: auto;
+	float: left;
+	width: 33.3%;
+	padding: 10px;
+	height: 300px;
+	margin-top: 2%;
+}
+.row:after {
+	content: "";
+	display: table;
+	clear: both;
+}
+.poll-card{
+	width: 400px;
+	height:280px;
+	border: 1px solid #555;
+	border-radius: 4px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.3);
+	padding: 1rem 1.5rem;
+	overflow: scroll;
+}
 #modal_btn, .make {
 	border: 2px solid lavender;
 	border-radius: 50px;
@@ -47,29 +63,27 @@
 	margin-left: 5px;
 	font-size: 12px';
 }
-
-.make:hover {
-	background: lavender;
-}
-
-#modal_btn:hover {
-	background: lavender;
-}
-
+.make:hover { background: lavender;}
+#modal_btn:hover { background: lavender;}
 .code {
 	padding: 1px 13px 1px 13px;
 	border: 1.5px solid white;
 	border-style: none none double none;
 	font-size: 16px;
 }
+.parent {display:flex;}
+.question {flex:4;}
+.status, .status_f {flex:1;  border-radius: 50px; text-align:center;}
+.status {background: lightblue; border: border: 2px solid lightblue;}
+.status_f {border: border: 2px solid lavender; background: lightgrey;}
 
 @media screen and (max-width: 600px) {
-	.code {
-		font-size: 12px;
-	}
-	.room_title {
-		font-size: 15px;
-	}
+	.column {width: 100%; margin-left:0rem;}
+	.poll-card{ width: 100%; overflow:scroll;}
+	.make{width: 50%; font-size:3px;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.code { font-size: 12px; }
+	.room_title { font-size: 15px;}
 }
 
 .surveyCount {
