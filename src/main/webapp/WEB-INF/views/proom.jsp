@@ -306,9 +306,9 @@
 
 
 									<c:if test="${readSurvey.status == true}">
-										<c:if test="${bttnCount == 0}">
+										<%-- <c:if test="${bttnCount == 0}"> --%>
 												<button type="submit" class="make" id="clickMe" onClick="check()">투표하기</button>
-										</c:if>
+										<%-- </c:if> --%>
 									</c:if>
 
 								</div>
