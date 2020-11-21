@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import java.security.SecureRandom;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,8 +19,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 //import com.example.demo.domain.MemberVO;
 import com.example.demo.domain.RoomVO;
+import com.example.demo.mappers.roomMapper;
 import com.example.demo.service.MemberService;
 import com.example.demo.service.RoomService;
+import com.example.demo.domain.PtUserVO;
 
 @Controller
 @SessionAttributes("member")
@@ -31,22 +34,39 @@ public class RoomController {
 	RoomService roomservice;
 	
 	MemberService service;
+	
+	@Resource(name="com.example.demo.mappers.roomMapper")
+	roomMapper mRoomMapper;
 
 	@RequestMapping(value="/main", method = RequestMethod.GET)
     public String list1( Model model, @RequestParam(value="id",required=false)String id) throws Exception{
 		logger.info("list");
         model.addAttribute("list", roomservice.list(id));
+        
+//        PtUserVO pt = new PtUserVO();
+//        pt = roomservice.plist(id);
+//        model.addAttribute("plist", roomservice.pplist(pt.getPt_user()));
         model.addAttribute("plist", roomservice.plist(id));
         
         return "/main"; //생성할 jsp
 	}
 	
 	@RequestMapping("/enterProc") //새로운 방 참여하기(방코드입력)
-	private String roomEnterProc(Model model, HttpServletRequest request,RedirectAttributes rttr,RoomVO RoomVO) throws Exception{
-		 roomservice.update(RoomVO);
-		 rttr.addAttribute("id", request.getParameter("pt_user"));
+	private String roomEnterProc(Model model, HttpServletRequest request,RedirectAttributes rttr) throws Exception{
+		
+		PtUserVO pt = new PtUserVO();
+		
+		String code = request.getParameter("code");
+		
+		pt.setRoom_id(mRoomMapper.findId(code));
+		pt.setRoom_name(mRoomMapper.findName(code));
+		pt.setMd_user(mRoomMapper.findMdUser(code));
+		pt.setPt_user(request.getParameter("pt_user"));
+		
+		roomservice.update(pt);
+		rttr.addAttribute("id", request.getParameter("pt_user"));
 		 
-		 return "redirect:/main";
+		return "redirect:/main";
 	}
 	
 	@RequestMapping("/insertProc") //새로운 방 만들기(방제목입력)

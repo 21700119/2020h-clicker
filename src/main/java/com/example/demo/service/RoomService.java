@@ -2,13 +2,14 @@ package com.example.demo.service;
 
 import java.util.List;
 
+import com.example.demo.domain.PtUserVO;
 import com.example.demo.domain.RoomVO;
 
 public interface RoomService {
 
 	public List<RoomVO> list(String id) throws Exception;
 	
-	public List<RoomVO> plist(String id) throws Exception;
+	public List<PtUserVO> plist(String id) throws Exception;
 	
 	public RoomVO roomDetail(int room_id) throws Exception;
 	
@@ -16,5 +17,7 @@ public interface RoomService {
 	
 	public int roomDelete(int room_id) throws Exception;
 	
-	public int update(RoomVO room) throws Exception;
+	public int update(PtUserVO room) throws Exception;
+
+	//public List<RoomVO> pplist(String id) throws Exception;
 }
