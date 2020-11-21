@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dao.RoomDAO;
+import com.example.demo.domain.PtUserVO;
 import com.example.demo.domain.RoomVO;
 
 @Service("com.example.demo.service.RoomServiceImpl")
@@ -20,7 +21,7 @@ public class RoomServiceImpl implements RoomService {
         return dao.list(id);
     }
 	@Override
-	public List<RoomVO> plist(String id) throws Exception{
+	public List<PtUserVO> plist(String id) throws Exception{
 		return dao.plist(id);
 	}
 	@Override
@@ -36,7 +37,11 @@ public class RoomServiceImpl implements RoomService {
 		return dao.roomDelete(room_id);
 	}
 	@Override
-	public int update(RoomVO room) throws Exception{
+	public int update(PtUserVO room) throws Exception{
 		return dao.update(room);
 	}
+//	@Override
+//	public List<RoomVO> pplist(String id) throws Exception{
+//		return dao.ppist(id);
+//	}
 }

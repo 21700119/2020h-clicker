@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.example.demo.domain.PtUserVO;
 import com.example.demo.domain.RoomVO;
 
 @Repository
@@ -19,7 +20,7 @@ public class RoomDAOImpl implements RoomDAO {
 		return sql.selectList("com.example.demo.mappers.roomMapper.list",id);
 	}
 	@Override
-	public List<RoomVO> plist(String id) throws Exception{
+	public List<PtUserVO> plist(String id) throws Exception{
 		return sql.selectList("com.example.demo.mappers.roomMapper.plist",id);
 	}
 	@Override
@@ -35,7 +36,11 @@ public class RoomDAOImpl implements RoomDAO {
 		return sql.delete("com.example.demo.mappers.roomMapper.roomDelete",room_id);
 	}
 	@Override
-	public int update(RoomVO room) throws Exception{
-		return sql.update("com.example.demo.mappers.roomMapper.update",room);
+	public int update(PtUserVO room) throws Exception{
+		return sql.insert("com.example.demo.mappers.roomMapper.update",room);
 	}
+//	@Override
+//	public List<RoomVO> ppist(String id) throws Exception{
+//		return sql.selectList("com.example.demo.mappers.roomMapper.pplist",id);
+//	}
 }
