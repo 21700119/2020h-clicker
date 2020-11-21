@@ -84,12 +84,21 @@
     		srv_id = #{srv_id}
     </select>
     
-    <select id="bttn" resultType="int">
+    <select id="bttn" parameterType="com.example.demo.domain.AnswerVO" resultType="int">
     	SELECT
     		COUNT(*)
     	FROM UserSurvey
     	WHERE
-    		srv_id = 4
+    		srv_id = #{srv_id} AND
+    		user_id = #{user_id}
+    </select>
+    
+    <select id="readAnswer" parameterType="int" resultType="com.example.demo.domain.AnswerVO">
+        SELECT
+            *
+        FROM UserSurvey
+        WHERE
+            srv_id = #{srv_id}
     </select>
     
 </mapper>

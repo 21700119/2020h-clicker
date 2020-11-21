@@ -40,7 +40,7 @@ public class SurveyController {
 		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
 
 		Logger.info("answerCount");
-		model.addAttribute("answerCount", mSurveyMapper.answerCount(0));
+		model.addAttribute("answerCount", mSurveyMapper.answerCount(Integer.parseInt(request.getParameter("srv_id"))));
 	        
 	    return "/mroom";
 	}
@@ -54,7 +54,12 @@ public class SurveyController {
 		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
 		
 		Logger.info("bttnCount");
-		model.addAttribute("bttnCount", mSurveyMapper.bttn());
+		//RoomVO room = surveyService.read(room_id);
+		AnswerVO answer = mSurveyMapper.readAnswer(request.getParameter("srv_id"));
+		Logger.info("1" + request.getParameter("srv_id"));
+		//Logger.info("an " + answer.getAnswer());
+		Logger.info(Integer.toString(mSurveyMapper.bttn(answer)));
+		model.addAttribute("bttnCount", mSurveyMapper.bttn(answer));
 	        
 	    return "/proom";
 	}
