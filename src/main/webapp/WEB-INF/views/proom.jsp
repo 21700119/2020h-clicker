@@ -100,10 +100,6 @@
 	padding-top: 3px;
 }
 
-.surveyCount_b {
-	background: lavender;
-}
-
 </style>
 </head>
 
