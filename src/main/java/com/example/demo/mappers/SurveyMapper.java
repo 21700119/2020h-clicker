@@ -28,5 +28,7 @@ public interface SurveyMapper {
 	
 	public int answerCount(int srv_id) throws Exception;
 	
-	public int bttn() throws Exception;
+	public int bttn(List<AnswerVO> answer) throws Exception;
+
+	public List<AnswerVO> readAnswer(int srv_id) throws Exception;
 }

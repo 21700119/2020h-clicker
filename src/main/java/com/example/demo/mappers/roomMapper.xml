@@ -10,10 +10,10 @@
         FROM Room
         WHERE md_user=#{id}
     </select>
-    <select id="plist" parameterType="String" resultType="com.example.demo.domain.RoomVO">
+    <select id="plist" parameterType="String" resultType="com.example.demo.domain.PtUserVO">
         SELECT
             *
-        FROM Room
+        FROM RoomPUser
         WHERE
         pt_user = #{id}
     </select>
@@ -32,11 +32,11 @@
     <delete id="roomDelete" parameterType="int">
         DELETE FROM Room WHERE room_id = #{room_id}
     </delete>
-    <update id="update" parameterType="com.example.demo.domain.RoomVO">
-        UPDATE Room
-		SET pt_user = #{pt_user}
-		WHERE code = #{code}
-    </update>
+    <insert id="update" parameterType="com.example.demo.domain.PtUserVO">
+        INSERT INTO
+        RoomPUser (room_id,room_name,md_user,pt_user)
+		VALUES(#{room_id},#{room_name},#{md_user},#{pt_user})
+    </insert>
     <select id="find" parameterType="String" resultType="com.example.demo.domain.RoomVO">
         SELECT
             *
@@ -49,4 +49,31 @@
         Room (room_id,room_name,code,md_user,pt_user,reg_date)
         VALUES(#{room_id},#{room_name},#{code},#{md_user},#{pt_user},now()) 
     </insert>
+    <select id="findId" parameterType="String" resultType="int">
+        SELECT
+            room_id
+        FROM Room
+        WHERE
+            code = #{code}
+    </select>
+    <select id="findName" parameterType="String" resultType="String">
+        SELECT
+            room_name
+        FROM Room
+        WHERE
+            code = #{code}
+    </select>
+    <select id="findMdUser" parameterType="String" resultType="String">
+        SELECT
+            md_user
+        FROM Room
+        WHERE
+            code = #{code}
+    </select>
+   <!--  <select id="pplist" parameterType="String" resultType="com.example.demo.domain.RoomVO">
+        SELECT
+            *
+        FROM Room
+        WHERE pt_user=#{id}
+    </select> -->
 </mapper>
