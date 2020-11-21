@@ -103,9 +103,6 @@
 	padding-top: 3px;
 }
 
-.surveyCount_b {
-	background: lavender;
-}
 </style>
 <script>
 	window.onload = function() {
@@ -180,8 +177,8 @@
 				</div>
 
 				<div>
-					<!-- <form action="/surveyProc" method="post" id="form"> -->
-					<form method="post" id="form" name="surveyform">
+					<form action="/surveyProc//${read.room_id}" method="post" id="form">
+					<!-- <form method="post" id="form" name="surveyform"> -->
 						<label class="ex" for="survey_name">투표 제목을 입력하세요.</label>
 						<fieldset>
 							<input class="marg poll_title" type="text" name="survey_name"
@@ -218,8 +215,10 @@
 								</form>
 							</div>
 
+							<!-- <input type="submit" value="Submit" style="background: #6c64a3; color: white;"
+								class="btn btn-info merg marg" onClick="check()" /> -->
 							<input type="submit" value="Submit" style="background: #6c64a3; color: white;"
-								class="btn btn-info merg marg" onClick="check()" />
+								class="btn btn-info merg marg" />
 						</fieldset>
 
 					</form>
@@ -247,8 +246,6 @@
 								<div class="options" id="survey_${status.index}">	
 									<c:choose>
 									<c:when test="${readSurvey.type == 1}">
-										<c:choose>
-											<c:when test="${readSurvey.status == true}">
 												<div class="option">
 													<div class="analytic">
 														<div class="bar"></div>
@@ -269,33 +266,8 @@
 														<p class="surveyCount">0 명</p>
 													</div>
 												</div>
-											</c:when>
-											<c:otherwise>
-												<div class="option">
-													<div class="analytic">
-														<div class="bar"></div>
-														<div class="percent">50%</div>
-													</div>
-													<div class="input surveyCount_b">
-														<label for="optiony" style="float:left;">Yes</label>
-														<p class="surveyCount">2 명</p>
-													</div>
-												</div>
-												<div class="option">
-													<div class="analytic">
-														<div class="bar"></div>
-														<div class="percent">50%</div>
-													</div>
-													<div class="input">
-														<label for="optionn" style="float: left;">No</label>
-														<p class="surveyCount">0 명</p>
-													</div>
-												</div>
-											</c:otherwise>
-										</c:choose>
-											
 									</c:when>
-									<c:when test="${readSurvey.type == 2}">
+									<%-- <c:when test="${readSurvey.type == 2}">
 											<script>
 												$(document).ready(function() {
 													var repeat_num = '<c:out value="${readSurvey.content}" />';
@@ -306,22 +278,20 @@
 													}
 												});
 											</script>
-									</c:when>
+									</c:when> --%>
 									<c:when test="${readSurvey.type == 3}">
-											<script>
-												$(document).ready(function() {
-													var repeat_num = '<c:out value="${readSurvey.content}" />';
-													repeat_num *= 1;
-	
-													for (var i = 1; i <= repeat_num; i++) {
-														$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'" style="float: left;">   '+i+'</label><p class="surveyCount">0 명</p></div></div>');
-													}
-												});
-											</script>
+												<script>
+													$(document).ready(function() {
+														var repeat_num = '<c:out value="${readSurvey.content}" />';
+														repeat_num *= 1;
+		
+														for (var i = 1; i <= repeat_num; i++) {
+															$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'" style="float: left;">   '+i+'</label><p class="surveyCount">0 명</p></div></div>');
+														}
+													});
+												</script>
 									</c:when>
 									<c:when test="${readSurvey.type == 4}">
-										<c:choose>
-											<c:when test="${readSurvey.status == true}">
 												<script>
 													$(document).ready(function() {
 														var repeat_num = '<c:out value="${readSurvey.content}" />';
@@ -332,22 +302,6 @@
 														}
 													});
 												</script>
-											</c:when>
-											<c:otherwise>
-												<script>
-													$(document).ready(function() {
-														var repeat_num = '<c:out value="${readSurvey.content}" />';
-														var text = repeat_num.split(",");
-		
-														for (var i = 0; i < text.length; i++) {
-															if(i==text.length-2 || i==text.length-1) $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input surveyCount_b"><label for="optiont'+i+'" style="float: left;">   '+text[i]+'</label><p class="surveyCount">1 명</p></div></div>');
-															else $('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="optiont'+i+'" style="float: left;">   '+text[i]+'</label><p class="surveyCount">0 명</p></div></div>');
-														}
-													});
-												</script>
-											</c:otherwise>
-										</c:choose>
-											
 									</c:when>
 								</c:choose>
 								
