@@ -138,9 +138,9 @@ body {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="l" items="${list}">
+					<c:forEach var="l" items="${list}" varStatus="md">
               		<tr>
-                  		<td>${l.room_id}</td>
+                  		<td>${md.count}</td>
                   		<td class="main" onclick="location.href='/mroom/${l.room_id}'">${l.room_name}</td>
                   		<td>${l.md_user}</td>
              		 </tr>
@@ -164,9 +164,9 @@ body {
 					</tr>
 				</thead>
 				<tbody>
-					<c:forEach var="p" items="${plist}">
+					<c:forEach var="p" items="${plist}" varStatus="pt">
 					<tr>
-						<td>${p.room_id}</td>
+						<td>${pt.count}</td>
                   		<td class="main" onclick="location.href='/proom/${p.room_id}'">${p.room_name}</td>
                   		<td>${p.md_user}</td>
 					</tr>
