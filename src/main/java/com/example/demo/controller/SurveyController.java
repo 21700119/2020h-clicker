@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -40,7 +42,7 @@ public class SurveyController {
 		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
 
 		Logger.info("answerCount");
-		model.addAttribute("answerCount", mSurveyMapper.answerCount(Integer.parseInt(request.getParameter("srv_id"))));
+		//model.addAttribute("answerCount", mSurveyMapper.answerCount(Integer.parseInt(request.getParameter("srv_id"))));
 	        
 	    return "/mroom";
 	}
@@ -53,13 +55,13 @@ public class SurveyController {
 		Logger.info("readSurvey");
 		model.addAttribute("readSurvey", surveyService.readSurvey(room_id));
 		
-		Logger.info("bttnCount");
-		//RoomVO room = surveyService.read(room_id);
-		AnswerVO answer = mSurveyMapper.readAnswer(request.getParameter("srv_id"));
-		Logger.info("1" + request.getParameter("srv_id"));
-		//Logger.info("an " + answer.getAnswer());
-		Logger.info(Integer.toString(mSurveyMapper.bttn(answer)));
-		model.addAttribute("bttnCount", mSurveyMapper.bttn(answer));
+//		Logger.info("bttnCount");
+//		//RoomVO room = surveyService.read(room_id);
+//		List<AnswerVO> answer = mSurveyMapper.readAnswer(Integer.parseInt(request.getParameter("srv_id")));
+//		Logger.info("1" + request.getParameter("srv_id"));
+//		//Logger.info("an " + answer.getAnswer());
+//		Logger.info(Integer.toString(mSurveyMapper.bttn(answer)));
+//		model.addAttribute("bttnCount", mSurveyMapper.bttn(answer));
 	        
 	    return "/proom";
 	}
