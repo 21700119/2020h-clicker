@@ -168,8 +168,9 @@
 		<!-- Content -->
 		<main class="mdc-drawer-app-content main-content">
 			<div class="top">
-				<button type='button' class="make" id="all"
-					style="background: lavender;">모든 투표</button>
+				<button type='button' class="make" id="all" style="background: lavender;">모든 투표</button>
+				<button type='button' class="make">진행중인 투표</button>
+				<button type='button' class="make">종료된 투표</button>
 			</div>
 			<div class="row">
 				<c:forEach items="${readSurvey}" var="readSurvey" varStatus="status">
