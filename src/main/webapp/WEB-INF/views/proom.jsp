@@ -77,6 +77,23 @@
 .status {background: lightblue; border: border: 2px solid lightblue;}
 .status_f {border: border: 2px solid lavender; background: lightgrey;}
 
+@media screen and (max-width: 1250px) {
+	.column {width: 48%; margin-left:1rem;}
+	.poll-card{ width: 100%; overflow:scroll;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.code { font-size: 14px; }
+	.room_title { font-size: 19px;} 
+}
+
+@media screen and (max-width: 846px) {
+	.column {width: 100%; margin-left:0rem;}
+	.poll-card{ width: 100%; overflow:scroll;}
+	.make{width: 50%; font-size:3px;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.code { font-size: 13px; }
+	.room_title { font-size: 17px;}
+}
+
 @media screen and (max-width: 600px) {
 	.column {width: 100%; margin-left:0rem;}
 	.poll-card{ width: 100%; overflow:scroll;}
@@ -151,8 +168,9 @@
 		<!-- Content -->
 		<main class="mdc-drawer-app-content main-content">
 			<div class="top">
-				<button type='button' class="make" id="all"
-					style="background: lavender;">모든 투표</button>
+				<button type='button' class="make" id="all" style="background: lavender;">모든 투표</button>
+				<button type='button' class="make">진행중인 투표</button>
+				<button type='button' class="make">종료된 투표</button>
 			</div>
 			<div class="row">
 				<c:forEach items="${readSurvey}" var="readSurvey" varStatus="status">
