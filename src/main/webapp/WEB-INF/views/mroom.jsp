@@ -79,14 +79,31 @@
 	margin: -250px 0 0 -250px;
 	z-index: 2;
 }
+
+@media screen and (max-width: 1250px) {
+	.column {width: 48%; margin-left:1rem;}
+	.poll-card{ width: 100%; overflow:scroll;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.code { font-size: 14px; }
+	.room_title { font-size: 19px;} 
+}
+
+@media screen and (max-width: 846px) {
+	.column {width: 100%; margin-left:0rem;}
+	.poll-card{ width: 100%; overflow:scroll;}
+	.make{width: 50%; font-size:3px;}
+	#modal_btn{width: 50%; font-size:3px;}
+	.code { font-size: 13px; }
+	.room_title { font-size: 17px;}
+}
+
 @media screen and (max-width: 600px) {
 	.column {width: 100%; margin-left:0rem;}
 	.poll-card{ width: 100%; overflow:scroll;}
 	.make{width: 50%; font-size:3px;}
 	#modal_btn{width: 50%; font-size:3px;}
-	.modal_wrap{width: 80%; top: 43%; left:74%; }
-	.room_title{font-size:15px;}
-	.code{font-size:12px;}
+	.code { font-size: 12px; }
+	.room_title { font-size: 15px;}
 }
 
 .surveyCount {
