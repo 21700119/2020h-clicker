@@ -69,21 +69,10 @@
 .status, .status_f {flex:1;  border-radius: 50px; text-align:center;}
 .status {background: lightblue; border: border: 2px solid lightblue;}
 .status_f {border: border: 2px solid lavender; background: lightgrey;}
-.modal_wrap {
-	display: none;
-	width: 300px;
-	height: 300px;
-	position: fixed;
-	top: 50%;
-	left: 53%;
-	margin: -250px 0 0 -250px;
-	z-index: 2;
-}
 
 @media screen and (max-width: 1250px) {
 	.column {width: 48%; margin-left:1rem;}
 	.poll-card{ width: 100%; overflow:scroll;}
-	#modal_btn{width: 50%; font-size:3px;}
 	.code { font-size: 14px; }
 	.room_title { font-size: 19px;} 
 }
@@ -95,6 +84,7 @@
 	#modal_btn{width: 50%; font-size:3px;}
 	.code { font-size: 13px; }
 	.room_title { font-size: 17px;}
+	.modal_wrap { top: 3%; left: 30%;}
 }
 
 @media screen and (max-width: 600px) {
@@ -104,6 +94,7 @@
 	#modal_btn{width: 50%; font-size:3px;}
 	.code { font-size: 12px; }
 	.room_title { font-size: 15px;}
+	.modal_wrap { width: 260px; top: 2%; left: 18%;}
 }
 
 .surveyCount {
@@ -185,6 +176,8 @@
 		<main class="mdc-drawer-app-content main-content">
 			<div class="top">
 				<button type='button' class="make" style="background: lavender;">모든 투표</button>
+				<button type='button' class="make">진행중인 투표</button>
+				<button type='button' class="make">종료된 투표</button>
 				<button type='button' id="modal_btn">새로운 투표 생성하기</button>
 			</div>
 			<div class="black_bg"></div>
@@ -194,7 +187,7 @@
 				</div>
 
 				<div>
-					<form action="/surveyProc//${read.room_id}" method="post" id="form">
+					<form action="/surveyProc//${read.room_id}" method="post" id="form" >
 					<!-- <form method="post" id="form" name="surveyform"> -->
 						<label class="ex" for="survey_name">투표 제목을 입력하세요.</label>
 						<fieldset>
