@@ -204,7 +204,7 @@ $("input[type=radio][name=answer]").on("click", function(){
 								</c:choose>
 							</div>
 
-							<form role="form" method="post" action="/proomAnswer/${read.room_id}/${readSurvey.srv_id}">
+							<form role="form" method="post" action="/proomAnswer/${member.user_id}/${read.room_id}/${readSurvey.srv_id}">
 								<div class="options" id="survey_${status.index}">
 									<c:choose>
 										<c:when test="${readSurvey.type == 1}">
