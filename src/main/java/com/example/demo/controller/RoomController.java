@@ -32,7 +32,6 @@ public class RoomController {
 	
 	@Inject
 	RoomService roomservice;
-	
 	MemberService service;
 	
 	@Resource(name="com.example.demo.mappers.roomMapper")
@@ -99,10 +98,13 @@ public class RoomController {
 	    return "redirect:/main";
 	}
 	
-	@RequestMapping(value="/delete/{room_id}", method = RequestMethod.POST) //mroom 삭제
-    private String roomDelete(@PathVariable int room_id,RedirectAttributes rttr) throws Exception{
-        roomservice.roomDelete(room_id);
+	@RequestMapping(value="/delete/{user_id}/{room_id}") //mroom 삭제
+    private String roomDelete(@PathVariable int room_id,@PathVariable String user_id,RedirectAttributes rttr,HttpServletRequest request) throws Exception{
+        roomservice.roomDelete1(room_id);
+        roomservice.roomDelete2(room_id);
+        roomservice.roomDelete3(room_id);
         
+        rttr.addAttribute("id", user_id);
         return "redirect:/main"; //main?id=111이런식으로 가야됌
     }
 	

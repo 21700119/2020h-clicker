@@ -32,8 +32,16 @@ public class RoomDAOImpl implements RoomDAO {
 		return sql.insert("com.example.demo.mappers.roomMapper.roomInsert",room);	
 	}
 	@Override
-	public int roomDelete(int room_id) throws Exception{
-		return sql.delete("com.example.demo.mappers.roomMapper.roomDelete",room_id);
+	public int roomDelete1(int room_id) throws Exception{
+		return sql.delete("com.example.demo.mappers.roomMapper.roomDelete1",room_id);
+	}
+	@Override
+	public int roomDelete2(int room_id) throws Exception{
+		return sql.delete("com.example.demo.mappers.roomMapper.roomDelete2",room_id);
+	}
+	@Override
+	public int roomDelete3(int room_id) throws Exception{
+		return sql.delete("com.example.demo.mappers.roomMapper.roomDelete3",room_id);
 	}
 	@Override
 	public int update(PtUserVO room) throws Exception{
