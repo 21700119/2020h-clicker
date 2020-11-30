@@ -40,7 +40,7 @@
         WHERE
             room_id = #{room_id}
     </select>
-    <insert id="answerInsert">
+    <insert id="answerInsert" parameterType="com.example.demo.domain.AnswerVO">
 	   INSERT INTO 
 	   UserSurvey(user_id, srv_id, answer, reg_date)
 	   VALUES(#{user_id},#{srv_id},#{answer},now())

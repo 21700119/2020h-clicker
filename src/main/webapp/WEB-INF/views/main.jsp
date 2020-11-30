@@ -167,7 +167,7 @@ body {
 					<c:forEach var="p" items="${plist}" varStatus="pt">
 					<tr>
 						<td>${pt.count}</td>
-                  		<td class="main" onclick="location.href='/proom/${p.room_id}'">${p.room_name}</td>
+                  		<td class="main" onclick="location.href='/proom/${member.user_id}/${p.room_id}'">${p.room_name}</td>
                   		<td>${p.md_user}</td>
 					</tr>
 					</c:forEach>
