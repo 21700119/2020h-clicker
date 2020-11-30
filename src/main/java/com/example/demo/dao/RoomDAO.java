@@ -15,7 +15,11 @@ public interface RoomDAO {
 	
 	public int roomInsert(RoomVO room) throws Exception;
 	
-	public int roomDelete(int room_id) throws Exception;
+	public int roomDelete1(int room_id) throws Exception;
+	
+	public int roomDelete2(int room_id) throws Exception;
+	
+	public int roomDelete3(int room_id) throws Exception;
 	
 	public int update(PtUserVO room) throws Exception;
 

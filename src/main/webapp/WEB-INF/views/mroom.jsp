@@ -44,6 +44,7 @@
 	width: 97%;
 }
 .poll-card{
+	margin: 40px;
 	width: 400px;
 	height:280px;
 	border: 1px solid #555;
@@ -165,7 +166,7 @@
 						<a class="mdc-list-item demo-drawer-list-item" href="/main?id=${member.user_id}">
 						<span class="material-icons mdc-list-item__graphic">exit_to_app</span>방 나가기</a>
 						<hr class="mdc-list-divider">
-						<a class="mdc-list-item demo-drawer-list-item" href='/delete/${read.room_id}'>
+						<a class="mdc-list-item demo-drawer-list-item" href='/delete/${member.user_id}/${read.room_id}'>
 						<span class="material-icons mdc-list-item__graphic">delete</span>방 파기</a>
 					</div>
 				</nav>
