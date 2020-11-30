@@ -103,11 +103,11 @@
 	.room_title { font-size: 15px;}
 }
 
+.input{display: flex; }
 .surveyCount {
-	float: right;
+	flex: 1;
 	font-size: 16px;
 	height: 30px;
-	width: 65px;
 	border: 2px solid #6c64a3;
 	border-radius: 10px;
 	background: #6c64a3;
@@ -116,8 +116,22 @@
 	margin: 10px 10px 0 0;
 	padding-top: 3px;
 }
+label{flex:4}
+input:checked + .input{
+	background-color: lavender;
+	font-weight: bold;
+}
 
 </style>
+<script>
+$("input[type=radio][name=answer]").on("click", function(){
+	var checkvalue = $("input[type=radio][name=answer]:checked").val();
+
+	if(checkvalue=='yes'){
+		$(".input").css('background-color','black');
+	}
+});
+</script>
 </head>
 
 <body>
@@ -201,8 +215,9 @@
 															<div class="bar"></div>
 															<div class="percent">50%</div>
 														</div>
+														<input type="radio" id="optiony'+${status.index}'" name="answer" value="yes" hidden>
 														<div class="input">
-															<label for="optiony" style="float:left;"><input type="radio" id="option'+i+'" name="answer" value="yes"> Yes&nbsp;</label>
+															<label for="optiony'+${status.index}'"> Yes&nbsp;</label>
 															<p class="surveyCount">32 명</p>
 														</div>
 													</div>
@@ -211,8 +226,9 @@
 															<div class="bar"></div>
 															<div class="percent">50%</div>
 														</div>
+														<input type="radio" id="optionn'+${status.index}'" name="answer" value="no" hidden>
 														<div class="input">
-															<label for="optionn" style="float:left;"><input type="radio" id="option'+i+'" name="answer" value="no"> No&nbsp;</label>
+															<label for="optionn'+${status.index}'"> No&nbsp;</label>
 															<p class="surveyCount">2 명</p>
 														</div>
 													</div>
@@ -272,7 +288,7 @@
 															repeat_num *= 1;
 			
 															for (var i = 1; i <= repeat_num; i++) {
-																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="option'+i+'"><input type="radio" id="option'+i+'" name="answer" value="'+i+'">   '+i+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
+																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><input type="radio" id="option'+${status.index}+i+'" name="answer" value="'+i+'" hidden><div class="input"><label for="option'+${status.index}+i+'"> '+i+'</label></div></div>');
 															}
 														//}
 													</script>
@@ -301,7 +317,7 @@
 															var text = repeat_num.split(",");
 			
 															for (var i = 0; i < text.length; i++) {
-																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><div class="input"><label for="optiont'+i+'"><input type="radio" id="optiont'+i+'" name="answer" value="'+text[i]+'">   '+text[i]+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
+																$('#survey_${status.index}').append('<div class="option"><div class="analytic"><div class="bar"></div><div class="percent">50%</div></div><input type="radio" id="optiont'+${status.index}+i+'" name="answer" value="'+text[i]+'" hidden><div class="input"><label for="optiont'+${status.index}+i+'">   '+text[i]+'&nbsp;<i class="fa fa-check tick" aria-hidden="true"></i></label></div></div>');
 															}
 														//}
 													</script>	

@@ -29,8 +29,14 @@
         Room (room_id,room_name,code,md_user,pt_user,reg_date)
         VALUES(#{room_id},#{room_name},#{code},#{md_user},#{pt_user},now()) 
     </insert>
-    <delete id="roomDelete" parameterType="int">
+    <delete id="roomDelete1" parameterType="int">
         DELETE FROM Room WHERE room_id = #{room_id}
+    </delete>
+    <delete id="roomDelete2" parameterType="int">
+        DELETE FROM RoomPUser WHERE room_id = #{room_id}
+    </delete>
+    <delete id="roomDelete3" parameterType="int">
+        DELETE FROM Survey WHERE room_id = #{room_id}
     </delete>
     <insert id="update" parameterType="com.example.demo.domain.PtUserVO">
         INSERT INTO
