@@ -1,7 +1,5 @@
 package com.example.demo.controller;
 
-import java.util.List;
-
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -47,8 +45,8 @@ public class SurveyController {
 	    return "/mroom";
 	}
 	
-	@RequestMapping(value="/proom/{room_id}", method = RequestMethod.GET) //mroom 디테일페이지 이동
-	private String read(@PathVariable int room_id, RoomVO RoomVO, Model model, SurveyVO surveyVO, HttpServletRequest request) throws Exception{
+	@RequestMapping(value="/proom/{user_id}/{room_id}", method = RequestMethod.GET) //mroom 디테일페이지 이동
+	private String read(@PathVariable String user_id, @PathVariable int room_id, RoomVO RoomVO, Model model, SurveyVO surveyVO, HttpServletRequest request) throws Exception{
 		Logger.info("read");
 		model.addAttribute("read", surveyService.read(room_id));
 
@@ -85,16 +83,18 @@ public class SurveyController {
         return "/dash_professor"; 
 	}
 	
-	@RequestMapping(value = "/proomAnswer/{room_id}/{srv_id}", method = RequestMethod.POST)
-	public String write(@PathVariable int room_id, @PathVariable int srv_id, AnswerVO answerVO) throws Exception{
+	@RequestMapping(value = "/proomAnswer/{user_id}/{room_id}/{srv_id}", method = RequestMethod.POST)
+	public String write(@PathVariable String user_id, @PathVariable int srv_id, AnswerVO answerVO) throws Exception{
 		Logger.info("write");
 		
-		answerVO.setUser_id(mSurveyMapper.proomAnswerUserId(room_id));
+		answerVO.setUser_id(user_id);
 		answerVO.setSrv_id(mSurveyMapper.proomAnswerSrvId(srv_id));
+		
+		Logger.info(answerVO.getAnswer() + " - " + answerVO.getUser_id() + " - " + answerVO.getSrv_id());
 		
 		surveyService.write(answerVO);
 		
-		return "redirect:/proom/{room_id}";
+		return "redirect:/proom/{user_id}/{room_id}";
 	}
 	
 	@RequestMapping(value = "/surveyProc/{room_id}", method = RequestMethod.POST)
